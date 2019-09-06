@@ -4,7 +4,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class ButtonsPanel extends JPanel implements ActionListener{
@@ -16,42 +15,42 @@ public class ButtonsPanel extends JPanel implements ActionListener{
 
 	private BtnListener btnListener;
 	
-	private JButton btn0;
-	private JButton btn1;
-	private JButton btn2;
-	private JButton btn3;
-	private JButton btn4;
-	private JButton btn5;
-	private JButton btn6;
-	private JButton btn7;
-	private JButton btn8;
-	private JButton btn9;
-	private JButton plusBtn;
-	private JButton minusBtn;
-	private JButton divideBtn;
-	private JButton multiplicationBtn;
-	private JButton calculateBtn;
-	private JButton deleteBtn;
+	private CalcButton btn0;
+	private CalcButton btn1;
+	private CalcButton btn2;
+	private CalcButton btn3;
+	private CalcButton btn4;
+	private CalcButton btn5;
+	private CalcButton btn6;
+	private CalcButton btn7;
+	private CalcButton btn8;
+	private CalcButton btn9;
+	private CalcButton plusBtn;
+	private CalcButton minusBtn;
+	private CalcButton divideBtn;
+	private CalcButton multiplicationBtn;
+	private CalcButton calculateBtn;
+	private CalcButton deleteBtn;
 	
 	
 	public ButtonsPanel()
 	{
-		btn0 = new JButton("0");
-		btn1 = new JButton("1");
-		btn2 = new JButton("2");
-		btn3 = new JButton("3");
-		btn4 = new JButton("4");
-		btn5 = new JButton("5");
-		btn6 = new JButton("6");
-		btn7 = new JButton("7");
-		btn8 = new JButton("8");
-		btn9 = new JButton("9");
-		plusBtn = new JButton("+");
-		minusBtn = new JButton("-");
-		divideBtn = new JButton("/");
-		multiplicationBtn = new JButton("*");
-		calculateBtn = new JButton("=");
-		deleteBtn = new JButton("C");
+		btn0 = new CalcButton("0"); 
+		btn1 = new CalcButton("1");
+		btn2 = new CalcButton("2");
+		btn3 = new CalcButton("3");
+		btn4 = new CalcButton("4");
+		btn5 = new CalcButton("5");
+		btn6 = new CalcButton("6");
+		btn7 = new CalcButton("7");
+		btn8 = new CalcButton("8");
+		btn9 = new CalcButton("9");
+		plusBtn = new CalcButton("+");
+		minusBtn = new CalcButton("-");
+		divideBtn = new CalcButton("/");
+		multiplicationBtn = new CalcButton("*");
+		calculateBtn = new CalcButton("=");
+		deleteBtn = new CalcButton("C");
 		btn0.addActionListener(this);
 		btn1.addActionListener(this);
 		btn2.addActionListener(this);
@@ -72,7 +71,7 @@ public class ButtonsPanel extends JPanel implements ActionListener{
 		
 		setLayout(new GridLayout(4,4));
 		//GridBagConstraints gc = new GridBagConstraints();
-		add(deleteBtn); add(divideBtn); add(multiplicationBtn); add(minusBtn); add(btn1); add(btn2); add(btn3); add(plusBtn); add(btn4); add(btn5); add(btn6); add(calculateBtn); add(btn7); add(btn8); add(btn9); add(btn0);
+		add(deleteBtn); add(divideBtn); add(multiplicationBtn); add(minusBtn); add(btn7); add(btn8); add(btn9); add(plusBtn); add(btn4); add(btn5); add(btn6); add(calculateBtn); add(btn1); add(btn2); add(btn3); add(btn0);
 		
 	}
 	
@@ -84,7 +83,7 @@ public class ButtonsPanel extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		
-		JButton clicked = (JButton)event.getSource();  // èrÛd≥em eventu musi byÊ JButton dlatego rzutujemy
+		CalcButton clicked = (CalcButton)event.getSource();  // èrÛd≥em eventu musi byÊ CalcButton dlatego rzutujemy
 		
 		if(btnListener!=null) {
 			switch(clicked.getText())

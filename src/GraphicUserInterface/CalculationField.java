@@ -1,5 +1,7 @@
 package GraphicUserInterface;
 
+import java.awt.Font;
+
 import javax.swing.JTextField;
 
 public class CalculationField extends JTextField {
@@ -15,5 +17,6 @@ public class CalculationField extends JTextField {
 	{
 		setSize(200,400);
 		setEditable(false);
+		setFont(new Font(Font.MONOSPACED, 1, 20));
 	}
 }

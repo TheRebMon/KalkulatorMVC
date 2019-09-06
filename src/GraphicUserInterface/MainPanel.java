@@ -18,11 +18,13 @@ public class MainPanel extends JPanel {
 	private ButtonsPanel btns;
 	private CalculationField textField;
 	private Controller controller;
-
+	private boolean cleanFlag;
+	
 	public MainPanel() {
 		btns = new ButtonsPanel();
 		textField = new CalculationField();
 		controller = new Controller();
+		cleanFlag=false;
 		
 		btns.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		textField.setBorder(BorderFactory.createLineBorder(Color.RED));
@@ -33,6 +35,13 @@ public class MainPanel extends JPanel {
 					@Override
 					public void calculationEmitted(String text) {
 						
+						
+						if(cleanFlag)
+						{
+							textField.setText("");
+							cleanFlag=false;
+						}
+						
 						addText(text);
 						
 					}
@@ -40,6 +49,11 @@ public class MainPanel extends JPanel {
 					@Override
 					public void calculationDeleted() {
 						deleteText();
+						if(cleanFlag)
+						{
+							textField.setText("");
+							cleanFlag=false;
+						}
 					}
 
 					@Override
@@ -47,6 +61,7 @@ public class MainPanel extends JPanel {
 						controller.calculate(textField.getText());
 						textField.setText("");
 						addText(controller.getSolution());
+						cleanFlag=true;
 						
 					}
 					
