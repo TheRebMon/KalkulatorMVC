@@ -41,6 +41,7 @@ public class MainPanel extends JPanel {
 					@Override
 					public void calculate() {
 						controller.calculate(textField.getText());
+						addText(controller.getSolution());
 						
 					}
 					

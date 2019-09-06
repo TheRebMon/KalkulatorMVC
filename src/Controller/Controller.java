@@ -15,4 +15,10 @@ public class Controller {
 	{
 		model.calculate(calculation);
 	}
+	
+	public String getSolution()
+	{
+		return model.getSolution();
+	}
+	
 }
