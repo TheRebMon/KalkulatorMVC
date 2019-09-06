@@ -22,6 +22,9 @@ public class Model {
 		numbers =wrapper.getNumbersArray();
 		operations = wrapper.getOperationArray();
 		
+		
+		
+		
 	}
 	
 	public String getSolution()

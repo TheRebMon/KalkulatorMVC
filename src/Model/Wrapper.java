@@ -15,7 +15,7 @@ public class Wrapper {
 	
 	public void simpleCalculation(String text)
 	{
-		
+		boolean operation=true;
 		
 		int i = 0;
 		String number="";
@@ -25,7 +25,7 @@ public class Wrapper {
 		
 			
 			
-			if(character=='+' || character=='-' || character=='*' || character=='/')
+			if((character=='+' || character=='-' || character=='*' || character=='/' )&& !operation)
 			{
 				double dNum = Double.parseDouble(number);
 				numbersArray.add(dNum);
@@ -53,6 +53,7 @@ public class Wrapper {
 				case '7': number.concat(new String("7")); break;
 				case '8': number.concat(new String("8")); break;
 				case '9': number.concat(new String("9")); break;
+				default: System.err.println("Z³y zapis!");
 				
 				}
 				
