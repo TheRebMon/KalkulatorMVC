@@ -11,6 +11,10 @@ import Controller.Controller;
 
 public class MainPanel extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8985166838789557040L;
 	private ButtonsPanel btns;
 	private CalculationField textField;
 	private Controller controller;
@@ -41,6 +45,7 @@ public class MainPanel extends JPanel {
 					@Override
 					public void calculate() {
 						controller.calculate(textField.getText());
+						textField.setText("");
 						addText(controller.getSolution());
 						
 					}
@@ -49,6 +54,28 @@ public class MainPanel extends JPanel {
 					
 				});
 
+		showUI();
+
+	}
+	
+	public void addText(String text)
+	{
+		textField.setText(textField.getText()+text);
+	}
+	
+	public void deleteText()
+	{
+		
+		String text = textField.getText();
+		if(text.length()>0)
+		{
+			textField.setText(text.substring(0, text.length()-1));
+		}
+		
+	}
+	
+	private void showUI()
+	{
 		setLayout(new GridBagLayout());
 		GridBagConstraints gc = new GridBagConstraints();
 
@@ -69,22 +96,5 @@ public class MainPanel extends JPanel {
 		gc.weighty = 1;
 
 		add(btns, gc);
-
-	}
-	
-	public void addText(String text)
-	{
-		textField.setText(textField.getText()+text);
-	}
-	
-	public void deleteText()
-	{
-		
-		String text = textField.getText();
-		if(text.length()>0)
-		{
-			textField.setText(text.substring(0, text.length()-1));
-		}
-		
 	}
 }

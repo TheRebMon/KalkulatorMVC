@@ -1,13 +1,14 @@
 package GraphicUserInterface;
-import java.awt.Color;
-
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 public class MainFrame extends JFrame {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1259435248721869109L;
 	private MainPanel mainPanel = new MainPanel();
 	
 	public MainFrame()

@@ -3,74 +3,99 @@ package Model;
 import java.util.Vector;
 
 public class Wrapper {
-	
-	private Vector numbersArray;
-	private Vector operationArray;
-	
-	public Wrapper()
-	{
-		numbersArray= new Vector();
-		operationArray = new Vector();
+
+	private Vector<Double> numbersArray;
+	private Vector<Character> operationArray;
+
+	public Wrapper() {
+		numbersArray = new Vector<Double>(0);
+		operationArray = new Vector<Character>(0);
 	}
-	
-	public void simpleCalculation(String text)
-	{
-		boolean operation=true;
+
+	public void simpleCalculation(String text) {
+		boolean operation = true;
+
 		
-		int i = 0;
-		String number="";
-		while(text.charAt(i)!='\0')
-		{
-			char character=text.charAt(i);
-		
-			
-			
-			if((character=='+' || character=='-' || character=='*' || character=='/' )&& !operation)
-			{
+		String number = "";
+		for(int i=0; i<text.length(); i++) {
+			char character = text.charAt(i);
+
+			if ((character == '+' || character == '-' || character == '*' || character == '/') && !operation) {
 				double dNum = Double.parseDouble(number);
 				numbersArray.add(dNum);
-				
-				switch(character)
-				{
-				case '+': operationArray.add(new String("+")); break;
-				case '-': operationArray.add(new String("-")); break;
-				case '*': operationArray.add(new String("*")); break;
-				case '/': operationArray.add(new String("/")); break;
+				number="";
+				operation=true;
+
+				switch (character) {
+				case '+':
+					operationArray.add('+');
+					break;
+				case '-':
+					operationArray.add('-');
+					break;
+				case '*':
+					operationArray.add('*');
+					break;
+				case '/':
+					operationArray.add('/');
+					break;
 				}
-		
-			}
-			else
-			{
-				switch(character)
-				{
-				case '0': number.concat(new String("0")); break;
-				case '1': number.concat(new String("1")); break;
-				case '2': number.concat(new String("2")); break;
-				case '3': number.concat(new String("3")); break;
-				case '4': number.concat(new String("4")); break;
-				case '5': number.concat(new String("5")); break;
-				case '6': number.concat(new String("6")); break;
-				case '7': number.concat(new String("7")); break;
-				case '8': number.concat(new String("8")); break;
-				case '9': number.concat(new String("9")); break;
-				default: System.err.println("Z³y zapis!");
-				
+
+			} else {
+				System.out.println(number);
+				operation=false;
+				switch (character) {
+				case '0':
+					number = number+"0";
+					break;
+				case '1':
+					number = number+"1";
+					break;
+				case '2':
+					number = number+"2";
+					break;
+				case '3':
+					number = number+"3";
+					break;
+				case '4':
+					number = number+"4";
+					break;
+				case '5':
+					number = number+"5";
+					break;
+				case '6':
+					number = number+"6";
+					break;
+				case '7':
+					number = number+"7";
+					break;
+				case '8':
+					number = number+"8";
+					break;
+				case '9':
+					number = number+"9";
+					break;
+				default:
+					System.err.println("Z³y zapis!");
+
 				}
+				System.out.println();
 				
+
 			}
 			
+
 		}
+		
+		double dNum = Double.parseDouble(number);
+		numbersArray.add(dNum);
 	}
 
-
-
-	public Vector getNumbersArray()
-	{
+	public Vector<Double> getNumbersArray() {
 		return numbersArray;
 	}
-	
-	public Vector getOperationArray()
-	{
+
+	public Vector<Character> getOperationArray() {
 		return operationArray;
 	}
 

@@ -9,6 +9,11 @@ import javax.swing.JPanel;
 
 public class ButtonsPanel extends JPanel implements ActionListener{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7761012838574372481L;
+
 	private BtnListener btnListener;
 	
 	private JButton btn0;
