@@ -16,7 +16,6 @@ public class MainFrame extends JFrame {
 		
 		
 		
-		
 		//Border
 		Border emptyBorder = BorderFactory.createEmptyBorder(5,5,5,5);
 		Border mainBorder = BorderFactory.createEtchedBorder();

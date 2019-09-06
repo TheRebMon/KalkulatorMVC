@@ -6,19 +6,47 @@ import java.awt.GridBagLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+
+import Controller.Controller;
 
 public class MainPanel extends JPanel {
 
 	private ButtonsPanel btns;
 	private CalculationField textField;
+	private Controller controller;
 
 	public MainPanel() {
 		btns = new ButtonsPanel();
 		textField = new CalculationField();
+		controller = new Controller();
 		
 		btns.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		textField.setBorder(BorderFactory.createLineBorder(Color.RED));
+		
+		btns.setBtnListener(new BtnListener()
+				{
+
+					@Override
+					public void calculationEmitted(String text) {
+						
+						addText(text);
+						
+					}
+
+					@Override
+					public void calculationDeleted() {
+						deleteText();
+					}
+
+					@Override
+					public void calculate() {
+						controller.calculate(textField.getText());
+						
+					}
+					
+					
+					
+				});
 
 		setLayout(new GridBagLayout());
 		GridBagConstraints gc = new GridBagConstraints();
@@ -41,5 +69,21 @@ public class MainPanel extends JPanel {
 
 		add(btns, gc);
 
+	}
+	
+	public void addText(String text)
+	{
+		textField.setText(textField.getText()+text);
+	}
+	
+	public void deleteText()
+	{
+		
+		String text = textField.getText();
+		if(text.length()>0)
+		{
+			textField.setText(text.substring(0, text.length()-1));
+		}
+		
 	}
 }
