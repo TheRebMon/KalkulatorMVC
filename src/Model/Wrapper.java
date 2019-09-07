@@ -75,6 +75,8 @@ public class Wrapper {
 				case '9':
 					number = number+"9";
 					break;
+				case ',': 
+					number = number+".";
 				default:
 					System.err.println("Z³y zapis!");
 

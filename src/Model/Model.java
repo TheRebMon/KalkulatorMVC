@@ -85,6 +85,12 @@ public class Model {
 	}
 
 	public String getSolution() {
+		clearWrapper();
 		return solution;
+	}
+	
+	public void clearWrapper()
+	{
+		wrapper= new Wrapper();
 	}
 }

@@ -31,6 +31,7 @@ public class ButtonsPanel extends JPanel implements ActionListener{
 	private CalcButton multiplicationBtn;
 	private CalcButton calculateBtn;
 	private CalcButton deleteBtn;
+	private CalcButton commaBtn;
 	
 	
 	public ButtonsPanel()
@@ -51,6 +52,7 @@ public class ButtonsPanel extends JPanel implements ActionListener{
 		multiplicationBtn = new CalcButton("*");
 		calculateBtn = new CalcButton("=");
 		deleteBtn = new CalcButton("C");
+		commaBtn = new CalcButton(",");
 		btn0.addActionListener(this);
 		btn1.addActionListener(this);
 		btn2.addActionListener(this);
@@ -67,11 +69,13 @@ public class ButtonsPanel extends JPanel implements ActionListener{
 		multiplicationBtn.addActionListener(this);
 		calculateBtn.addActionListener(this);
 		deleteBtn.addActionListener(this);
+		commaBtn.addActionListener(this);
 		
 		
-		setLayout(new GridLayout(4,4));
+		setLayout(new GridLayout(5,4));
 		//GridBagConstraints gc = new GridBagConstraints();
-		add(deleteBtn); add(divideBtn); add(multiplicationBtn); add(minusBtn); add(btn7); add(btn8); add(btn9); add(plusBtn); add(btn4); add(btn5); add(btn6); add(calculateBtn); add(btn1); add(btn2); add(btn3); add(btn0);
+		add(deleteBtn); add(divideBtn); add(multiplicationBtn); add(minusBtn); add(btn7); add(btn8); add(btn9); add(plusBtn); add(btn4); add(btn5); add(btn6); add(calculateBtn); add(btn1); 
+		add(btn2); add(btn3); add(btn0); add(commaBtn);
 		
 	}
 	
@@ -102,6 +106,7 @@ public class ButtonsPanel extends JPanel implements ActionListener{
 			case "*": btnListener.calculationEmitted("*"); break;
 			case "-": btnListener.calculationEmitted("-"); break;
 			case "+": btnListener.calculationEmitted("+"); break;
+			case ",": btnListener.calculationEmitted(","); break;
 			case "C": btnListener.calculationDeleted(); break;
 			case "=": btnListener.calculate(); break;
 			}
