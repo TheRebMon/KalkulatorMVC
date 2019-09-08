@@ -3,6 +3,7 @@ package GraphicUserInterface;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
@@ -76,7 +77,18 @@ public class MainPanel extends JPanel {
 	
 	public void addText(String text)
 	{
-		textField.setText(textField.getText()+text);
+		ArrayList<String> operation = new ArrayList<String>();
+		operation.add("+");
+		operation.add("*");
+		operation.add("/");
+		operation.add("-");
+		operation.add(",");
+		
+		for(String sign: operation)
+		if(textField.getText().endsWith(sign))
+			break;
+		else textField.setText(textField.getText()+text);
+		
 	}
 	
 	public void deleteText()

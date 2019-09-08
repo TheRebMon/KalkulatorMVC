@@ -129,6 +129,7 @@ public class ButtonsPanel extends JPanel implements ActionListener {
 			case "6":
 				btnListener.calculationEmitted("6");
 				operationBlock(true);
+				break;
 			case "7":
 				btnListener.calculationEmitted("7");
 				operationBlock(true);
