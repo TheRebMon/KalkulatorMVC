@@ -26,6 +26,7 @@ public class MainPanel extends JPanel {
 		controller = new Controller();
 		cleanFlag=false;
 		
+		
 		btns.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		textField.setBorder(BorderFactory.createLineBorder(Color.RED));
 		

@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
-public class ButtonsPanel extends JPanel implements ActionListener{
+public class ButtonsPanel extends JPanel implements ActionListener {
 
 	/**
 	 * 
@@ -14,7 +14,7 @@ public class ButtonsPanel extends JPanel implements ActionListener{
 	private static final long serialVersionUID = -7761012838574372481L;
 
 	private BtnListener btnListener;
-	
+
 	private CalcButton btn0;
 	private CalcButton btn1;
 	private CalcButton btn2;
@@ -32,11 +32,9 @@ public class ButtonsPanel extends JPanel implements ActionListener{
 	private CalcButton calculateBtn;
 	private CalcButton deleteBtn;
 	private CalcButton commaBtn;
-	
-	
-	public ButtonsPanel()
-	{
-		btn0 = new CalcButton("0"); 
+
+	public ButtonsPanel() {
+		btn0 = new CalcButton("0");
 		btn1 = new CalcButton("1");
 		btn2 = new CalcButton("2");
 		btn3 = new CalcButton("3");
@@ -70,48 +68,117 @@ public class ButtonsPanel extends JPanel implements ActionListener{
 		calculateBtn.addActionListener(this);
 		deleteBtn.addActionListener(this);
 		commaBtn.addActionListener(this);
-		
-		
-		setLayout(new GridLayout(5,4));
-		//GridBagConstraints gc = new GridBagConstraints();
-		add(deleteBtn); add(divideBtn); add(multiplicationBtn); add(minusBtn); add(btn7); add(btn8); add(btn9); add(plusBtn); add(btn4); add(btn5); add(btn6); add(calculateBtn); add(btn1); 
-		add(btn2); add(btn3); add(btn0); add(commaBtn);
-		
+
+		setLayout(new GridLayout(5, 4));
+		// GridBagConstraints gc = new GridBagConstraints();
+		add(deleteBtn);
+		add(divideBtn);
+		add(multiplicationBtn);
+		add(minusBtn);
+		add(btn7);
+		add(btn8);
+		add(btn9);
+		add(plusBtn);
+		add(btn4);
+		add(btn5);
+		add(btn6);
+		add(calculateBtn);
+		add(btn1);
+		add(btn2);
+		add(btn3);
+		add(btn0);
+		add(commaBtn);
+
 	}
-	
-	public void setBtnListener(BtnListener btnListener)
-	{
+
+	public void setBtnListener(BtnListener btnListener) {
 		this.btnListener = btnListener;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		
-		CalcButton clicked = (CalcButton)event.getSource();  // èrÛd≥em eventu musi byÊ CalcButton dlatego rzutujemy
-		
-		if(btnListener!=null) {
-			switch(clicked.getText())
-			{
-			case "0": btnListener.calculationEmitted("0"); break;
-			case "1": btnListener.calculationEmitted("1"); break;
-			case "2": btnListener.calculationEmitted("2"); break;
-			case "3": btnListener.calculationEmitted("3"); break;
-			case "4": btnListener.calculationEmitted("4"); break;
-			case "5": btnListener.calculationEmitted("5"); break;
-			case "6": btnListener.calculationEmitted("6"); break;
-			case "7": btnListener.calculationEmitted("7"); break;
-			case "8": btnListener.calculationEmitted("8"); break;
-			case "9": btnListener.calculationEmitted("9"); break;
-			case "/": btnListener.calculationEmitted("/"); break;
-			case "*": btnListener.calculationEmitted("*"); break;
-			case "-": btnListener.calculationEmitted("-"); break;
-			case "+": btnListener.calculationEmitted("+"); break;
-			case ",": btnListener.calculationEmitted(","); break;
-			case "C": btnListener.calculationDeleted(); break;
-			case "=": btnListener.calculate(); break;
+
+		CalcButton clicked = (CalcButton) event.getSource(); // èrÛd≥em eventu musi byÊ CalcButton dlatego rzutujemy
+
+		if (btnListener != null) {
+			switch (clicked.getText()) {
+			case "0":
+				btnListener.calculationEmitted("0");
+				operationBlock(true);
+				break;
+			case "1":
+				btnListener.calculationEmitted("1");
+				operationBlock(true);
+				break;
+			case "2":
+				btnListener.calculationEmitted("2");
+				operationBlock(true);
+				break;
+			case "3":
+				btnListener.calculationEmitted("3");
+				operationBlock(true);
+				break;
+			case "4":
+				btnListener.calculationEmitted("4");
+				operationBlock(true);
+				break;
+			case "5":
+				btnListener.calculationEmitted("5");
+				operationBlock(true);
+				break;
+			case "6":
+				btnListener.calculationEmitted("6");
+				operationBlock(true);
+			case "7":
+				btnListener.calculationEmitted("7");
+				operationBlock(true);
+				break;
+			case "8":
+				btnListener.calculationEmitted("8");
+				operationBlock(true);
+				break;
+			case "9":
+				btnListener.calculationEmitted("9");
+				operationBlock(true);
+				break;
+			case "/":
+				btnListener.calculationEmitted("/");
+				operationBlock(false);
+				break;
+			case "*":
+				btnListener.calculationEmitted("*");
+				operationBlock(false);
+				break;
+			case "-":
+				btnListener.calculationEmitted("-");
+				operationBlock(false);
+				break;
+			case "+":
+				btnListener.calculationEmitted("+");
+				operationBlock(false);
+				break;
+			case ",":
+				btnListener.calculationEmitted(",");
+				operationBlock(false);
+				break;
+			case "C":
+				btnListener.calculationDeleted();
+				operationBlock(true);
+				break;
+			case "=":
+				btnListener.calculate();
+				operationBlock(true);
+				break;
 			}
 		}
 	}
-	
-	
+
+	//Do poprawki
+	public void operationBlock(boolean enabled) {
+		commaBtn.setEnabled(enabled);
+		minusBtn.setEnabled(enabled);
+		plusBtn.setEnabled(enabled);
+		divideBtn.setEnabled(enabled);
+		multiplicationBtn.setEnabled(enabled);
+	}
 }
