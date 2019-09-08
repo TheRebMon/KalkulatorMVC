@@ -104,71 +104,54 @@ public class ButtonsPanel extends JPanel implements ActionListener {
 			switch (clicked.getText()) {
 			case "0":
 				btnListener.calculationEmitted("0");
-				operationBlock(true);
 				break;
 			case "1":
 				btnListener.calculationEmitted("1");
-				operationBlock(true);
 				break;
 			case "2":
 				btnListener.calculationEmitted("2");
-				operationBlock(true);
 				break;
 			case "3":
 				btnListener.calculationEmitted("3");
-				operationBlock(true);
 				break;
 			case "4":
 				btnListener.calculationEmitted("4");
-				operationBlock(true);
 				break;
 			case "5":
 				btnListener.calculationEmitted("5");
-				operationBlock(true);
 				break;
 			case "6":
 				btnListener.calculationEmitted("6");
-				operationBlock(true);
 				break;
 			case "7":
 				btnListener.calculationEmitted("7");
-				operationBlock(true);
 				break;
 			case "8":
 				btnListener.calculationEmitted("8");
-				operationBlock(true);
 				break;
 			case "9":
 				btnListener.calculationEmitted("9");
-				operationBlock(true);
 				break;
 			case "/":
 				btnListener.calculationEmitted("/");
-				operationBlock(false);
 				break;
 			case "*":
 				btnListener.calculationEmitted("*");
-				operationBlock(false);
 				break;
 			case "-":
 				btnListener.calculationEmitted("-");
-				operationBlock(false);
 				break;
 			case "+":
 				btnListener.calculationEmitted("+");
-				operationBlock(false);
 				break;
 			case ",":
 				btnListener.calculationEmitted(",");
-				operationBlock(false);
 				break;
 			case "C":
 				btnListener.calculationDeleted();
-				operationBlock(true);
 				break;
 			case "=":
 				btnListener.calculate();
-				operationBlock(true);
 				break;
 			}
 		}

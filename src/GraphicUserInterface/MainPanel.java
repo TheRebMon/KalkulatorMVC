@@ -86,8 +86,10 @@ public class MainPanel extends JPanel {
 		
 		for(String sign: operation)
 		if(textField.getText().endsWith(sign))
-			break;
-		else textField.setText(textField.getText()+text);
+			return;
+		else continue; 
+			
+		textField.setText(textField.getText()+text);
 		
 	}
 	
