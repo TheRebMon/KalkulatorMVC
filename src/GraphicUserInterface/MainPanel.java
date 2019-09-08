@@ -85,7 +85,7 @@ public class MainPanel extends JPanel {
 		operation.add(",");
 		
 		for(String sign: operation)
-		if(textField.getText().endsWith(sign))
+		if(textField.getText().endsWith(sign) && text.equals(sign))
 			return;
 		else continue; 
 			
