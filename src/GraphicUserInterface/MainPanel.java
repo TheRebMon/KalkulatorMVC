@@ -60,10 +60,19 @@ public class MainPanel extends JPanel {
 
 					@Override
 					public void calculate() {
-						controller.calculate(textField.getText());
+						
+						if(cleanFlag)
+						{
+							controller.calculate(textField.getText()+"*2");
+						}
+						else {
+							controller.calculate(textField.getText());
+							
+						}
 						textField.setText("");
 						addText(controller.getSolution());
 						cleanFlag=true;
+						
 						
 					}
 					

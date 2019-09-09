@@ -15,6 +15,9 @@ public class ButtonsPanel extends JPanel implements ActionListener {
 
 	private BtnListener btnListener;
 
+	
+	//TODO Zrobiæ tablicê buttonow albo jakoœ inaczej to gówno posprz¹taæ
+	
 	private CalcButton btn0;
 	private CalcButton btn1;
 	private CalcButton btn2;

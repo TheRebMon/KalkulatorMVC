@@ -80,6 +80,9 @@ public class Model {
 		}
 		
 		solution = numbers.get(0).toString();
+		
+		System.out.println(solution.indexOf("."));
+		solution = solution.replace('.', ',');
 		System.out.println(solution);
 
 	}
