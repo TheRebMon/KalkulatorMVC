@@ -17,6 +17,11 @@ public class Model {
 		wrapper.simpleCalculation(calculation);
 		numbers = wrapper.getNumbersArray();
 		operations = wrapper.getOperationArray();
+		if(numbers.size()<=operations.size())
+		{
+			solution="Wrong Syntax!";
+			return;
+		}
 
 		for (int i = 0; i < numbers.size()-1; i++) {
 
@@ -79,12 +84,8 @@ public class Model {
 			}
 		}
 		
-		solution = numbers.get(0).toString();
+		solution = numbers.get(0).toString().replace('.', ',');
 		
-		System.out.println(solution.indexOf("."));
-		solution = solution.replace('.', ',');
-		System.out.println(solution);
-
 	}
 
 	public String getSolution() {

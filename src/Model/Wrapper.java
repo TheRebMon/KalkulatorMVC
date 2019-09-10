@@ -21,6 +21,11 @@ public class Wrapper {
 			char character = text.charAt(i);
 
 			if ((character == '+' || character == '-' || character == '*' || character == '/') && !operation) {
+				
+				if(number=="")
+				{
+					return;
+				}
 				double dNum = Double.parseDouble(number);
 				numbersArray.add(dNum);
 				number="";

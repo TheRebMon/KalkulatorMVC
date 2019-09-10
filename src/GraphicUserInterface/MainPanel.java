@@ -20,101 +20,92 @@ public class MainPanel extends JPanel {
 	private CalculationField textField;
 	private Controller controller;
 	private boolean cleanFlag;
-	
+
 	public MainPanel() {
 		btns = new ButtonsPanel();
 		textField = new CalculationField();
 		controller = new Controller();
-		cleanFlag=false;
-		
-		
+		cleanFlag = false;
+
 		btns.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		textField.setBorder(BorderFactory.createLineBorder(Color.RED));
-		
-		btns.setBtnListener(new BtnListener()
-				{
 
-					@Override
-					public void calculationEmitted(String text) {
-						
-						
-						if(cleanFlag)
-						{
-							textField.setText("");
-							cleanFlag=false;
-						}
-						
-						addText(text);
-						
-					}
+		btns.setBtnListener(new BtnListener() {
 
-					@Override
-					public void calculationDeleted() {
-						deleteText();
-						if(cleanFlag)
-						{
-							textField.setText("");
-							cleanFlag=false;
-						}
-					}
+			@Override
+			public void calculationEmitted(String text) {
 
-					@Override
-					public void calculate() {
-						
-						if(cleanFlag)
-						{
-							controller.calculate(textField.getText()+"*2");
-						}
-						else {
-							controller.calculate(textField.getText());
-							
-						}
-						textField.setText("");
-						addText(controller.getSolution());
-						cleanFlag=true;
-						
-						
-					}
-					
-					
-					
-				});
+				if (cleanFlag) {
+					textField.setText("");
+					cleanFlag = false;
+				}
+
+				addText(text);
+
+			}
+
+			@Override
+			public void calculationDeleted() {
+				deleteText();
+				if (cleanFlag) {
+					textField.setText("");
+					cleanFlag = false;
+				}
+			}
+
+			@Override
+			public void calculate() {
+
+				if (cleanFlag) {
+					controller.calculate(textField.getText() + "*2");
+				} else {
+					controller.calculate(textField.getText());
+
+				}
+				textField.setText("");
+				addText(controller.getSolution());
+				cleanFlag = true;
+
+			}
+
+		});
 
 		showUI();
 
 	}
-	
-	public void addText(String text)
-	{
+
+	//TODO double operation sign input
+	public void addText(String text) {
 		ArrayList<String> operation = new ArrayList<String>();
 		operation.add("+");
 		operation.add("*");
 		operation.add("/");
 		operation.add("-");
 		operation.add(",");
+		operation.add("=");
 		
-		for(String sign: operation)
-		if(textField.getText().endsWith(sign) && text.equals(sign))
-			return;
-		else continue; 
-			
-		textField.setText(textField.getText()+text);
-		
+		String input = textField.getText();
+
+		for (String sign : operation)
+			if (input.endsWith(sign) && text.equals(sign))
+				return;
+			else
+				continue;
+
+		textField.setText(textField.getText() + text);
+
 	}
-	
-	public void deleteText()
-	{
-		
+
+	public void deleteText() {
+
 		String text = textField.getText();
-		if(text.length()>0)
-		{
-			textField.setText(text.substring(0, text.length()-1));
+		if (text.length() > 0) {
+			textField.setText(text.substring(0, text.length() - 1));
 		}
-		
+
 	}
-	
-	private void showUI()
-	{
+
+	private void showUI() {
 		setLayout(new GridBagLayout());
 		GridBagConstraints gc = new GridBagConstraints();
 
@@ -135,5 +126,10 @@ public class MainPanel extends JPanel {
 		gc.weighty = 1;
 
 		add(btns, gc);
+	}
+	public void setSolver(boolean b)
+	{
+		btns.setEquationSolver(b);
+		textField.setText("");
 	}
 }

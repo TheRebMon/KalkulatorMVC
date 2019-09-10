@@ -1,6 +1,10 @@
 package GraphicUserInterface;
 
-import java.awt.GridLayout;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,83 +18,29 @@ public class ButtonsPanel extends JPanel implements ActionListener {
 	private static final long serialVersionUID = -7761012838574372481L;
 
 	private BtnListener btnListener;
-
-	
-	//TODO Zrobiæ tablicê buttonow albo jakoœ inaczej to gówno posprz¹taæ
-	
-	private CalcButton btn0;
-	private CalcButton btn1;
-	private CalcButton btn2;
-	private CalcButton btn3;
-	private CalcButton btn4;
-	private CalcButton btn5;
-	private CalcButton btn6;
-	private CalcButton btn7;
-	private CalcButton btn8;
-	private CalcButton btn9;
-	private CalcButton plusBtn;
-	private CalcButton minusBtn;
-	private CalcButton divideBtn;
-	private CalcButton multiplicationBtn;
-	private CalcButton calculateBtn;
-	private CalcButton deleteBtn;
-	private CalcButton commaBtn;
+	private CalcButton[] btn;
+	private String[] buttonLabels;
+	private boolean solver;
 
 	public ButtonsPanel() {
-		btn0 = new CalcButton("0");
-		btn1 = new CalcButton("1");
-		btn2 = new CalcButton("2");
-		btn3 = new CalcButton("3");
-		btn4 = new CalcButton("4");
-		btn5 = new CalcButton("5");
-		btn6 = new CalcButton("6");
-		btn7 = new CalcButton("7");
-		btn8 = new CalcButton("8");
-		btn9 = new CalcButton("9");
-		plusBtn = new CalcButton("+");
-		minusBtn = new CalcButton("-");
-		divideBtn = new CalcButton("/");
-		multiplicationBtn = new CalcButton("*");
-		calculateBtn = new CalcButton("=");
-		deleteBtn = new CalcButton("C");
-		commaBtn = new CalcButton(",");
-		btn0.addActionListener(this);
-		btn1.addActionListener(this);
-		btn2.addActionListener(this);
-		btn3.addActionListener(this);
-		btn4.addActionListener(this);
-		btn5.addActionListener(this);
-		btn6.addActionListener(this);
-		btn7.addActionListener(this);
-		btn8.addActionListener(this);
-		btn9.addActionListener(this);
-		plusBtn.addActionListener(this);
-		minusBtn.addActionListener(this);
-		divideBtn.addActionListener(this);
-		multiplicationBtn.addActionListener(this);
-		calculateBtn.addActionListener(this);
-		deleteBtn.addActionListener(this);
-		commaBtn.addActionListener(this);
 
-		setLayout(new GridLayout(5, 4));
-		// GridBagConstraints gc = new GridBagConstraints();
-		add(deleteBtn);
-		add(divideBtn);
-		add(multiplicationBtn);
-		add(minusBtn);
-		add(btn7);
-		add(btn8);
-		add(btn9);
-		add(plusBtn);
-		add(btn4);
-		add(btn5);
-		add(btn6);
-		add(calculateBtn);
-		add(btn1);
-		add(btn2);
-		add(btn3);
-		add(btn0);
-		add(commaBtn);
+		solver=false;
+		buttonLabels = new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "/", "*", "=", "C",
+				",", "x", "a^2" };
+		// *****************************0****1*** 2*** 3*** 4*** 5*** 6*** 7*** 8***
+		// 9*** 10** 11** 12** 13** 14 **15***16**17
+		// ******16
+		btn = new CalcButton[19];
+		int i = 0;
+		for (String label : buttonLabels) {
+			btn[i] = new CalcButton(label);
+			btn[i].addActionListener(this);
+			i++;
+
+		}
+		
+
+		showUI();
 
 	}
 
@@ -154,18 +104,138 @@ public class ButtonsPanel extends JPanel implements ActionListener {
 				btnListener.calculationDeleted();
 				break;
 			case "=":
+				if(solver)
+				{
+					btnListener.calculationEmitted("=");
+				}
+				else
 				btnListener.calculate();
+				break;
+			case "x": 
+				if(solver)
+				btnListener.calculationEmitted("x");
 				break;
 			}
 		}
 	}
+	
+	public void setEquationSolver(boolean solver)
+	{
+		this.solver= solver;
+	}
 
-	//Do poprawki
-	public void operationBlock(boolean enabled) {
-		commaBtn.setEnabled(enabled);
-		minusBtn.setEnabled(enabled);
-		plusBtn.setEnabled(enabled);
-		divideBtn.setEnabled(enabled);
-		multiplicationBtn.setEnabled(enabled);
+	private void showUI() {
+		setLayout(new GridBagLayout());
+		GridBagConstraints gc = new GridBagConstraints();
+
+		gc.fill = GridBagConstraints.BOTH;
+		gc.gridy = 0;
+		// First Row
+
+		gc.weightx = 1;
+		gc.weighty = 1;
+
+		gc.gridx = 0;
+		gc.insets = new Insets(3, 3, 3, 3);
+		add(btn[15], gc);
+
+		gc.gridx++;
+		gc.insets = new Insets(3, 3, 3, 3);
+		add(btn[17], gc);
+
+		gc.gridx++;
+		gc.insets = new Insets(3, 3, 3, 3);
+		add(btn[18], gc);
+
+		gc.gridx++;
+		gc.insets = new Insets(3, 3, 3, 3);
+		add(btn[13], gc);
+
+		// Next Row
+		gc.gridy++;
+
+		gc.weightx = 1;
+		gc.weighty = 1;
+
+		gc.gridx = 0;
+		gc.insets = new Insets(3, 3, 3, 3);
+		add(btn[7], gc);
+
+		gc.gridx++;
+		gc.insets = new Insets(3, 3, 3, 3);
+		add(btn[8], gc);
+
+		gc.gridx++;
+		gc.insets = new Insets(3, 3, 3, 3);
+		add(btn[9], gc);
+
+		gc.gridx++;
+		gc.insets = new Insets(3, 3, 3, 3);
+		add(btn[12], gc);
+
+		// Next Row
+		gc.gridy++;
+
+		gc.weightx = 1;
+		gc.weighty = 1;
+
+		gc.gridx = 0;
+		gc.insets = new Insets(3, 3, 3, 3);
+		add(btn[4], gc);
+
+		gc.gridx++;
+		gc.insets = new Insets(3, 3, 3, 3);
+		add(btn[5], gc);
+
+		gc.gridx++;
+		gc.insets = new Insets(3, 3, 3, 3);
+		add(btn[6], gc);
+
+		gc.gridx++;
+		gc.insets = new Insets(3, 3, 3, 3);
+		add(btn[11], gc);
+
+		// Next Row
+		gc.gridy++;
+
+		gc.weightx = 1;
+		gc.weighty = 1;
+
+		gc.gridx = 0;
+		gc.insets = new Insets(3, 3, 3, 3);
+		add(btn[1], gc);
+
+		gc.gridx++;
+		gc.insets = new Insets(3, 3, 3, 3);
+		add(btn[2], gc);
+
+		gc.gridx++;
+		gc.insets = new Insets(3, 3, 3, 3);
+		add(btn[3], gc);
+
+		gc.gridx++;
+		gc.insets = new Insets(3, 3, 3, 3);
+		add(btn[10], gc);
+
+		// Next Row
+		gc.gridy++;
+
+		gc.weightx = 1;
+		gc.weighty = 1;
+
+		gc.gridx = 0;
+		gc.insets = new Insets(3, 3, 3, 3);
+
+		gc.gridx++;
+		gc.insets = new Insets(3, 3, 3, 3);
+		add(btn[0], gc);
+
+		gc.gridx++;
+		gc.insets = new Insets(3, 3, 3, 3);
+		add(btn[16], gc);
+
+		gc.gridx++;
+		gc.insets = new Insets(3, 3, 3, 3);
+		add(btn[14], gc);
 	}
 }
