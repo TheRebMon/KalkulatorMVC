@@ -68,6 +68,11 @@ public class MainPanel extends JPanel {
 
 			}
 
+			@Override
+			public void solveEquation() {
+				controller.solve(textField.getText());
+			}
+
 		});
 
 		showUI();
@@ -75,24 +80,25 @@ public class MainPanel extends JPanel {
 	}
 
 	//TODO double operation sign input
-	public void addText(String text) {
+	public void addText(String character) {
 		ArrayList<String> operation = new ArrayList<String>();
 		operation.add("+");
 		operation.add("*");
 		operation.add("/");
-		operation.add("-");
 		operation.add(",");
 		operation.add("=");
 		
 		String input = textField.getText();
 
-		for (String sign : operation)
-			if (input.endsWith(sign) && text.equals(sign))
-				return;
-			else
-				continue;
-
-		textField.setText(textField.getText() + text);
+		if(operation.contains(character))
+		{	
+			for (String sign : operation)
+				if (input.endsWith(sign))
+					return;
+				else
+					continue;
+		}
+		textField.setText(textField.getText() + character);
 
 	}
 

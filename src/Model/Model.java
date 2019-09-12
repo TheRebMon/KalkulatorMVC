@@ -17,84 +17,97 @@ public class Model {
 		wrapper.simpleCalculation(calculation);
 		numbers = wrapper.getNumbersArray();
 		operations = wrapper.getOperationArray();
-		if(numbers.size()<=operations.size())
-		{
-			solution="Wrong Syntax!";
+		if (numbers.size() <= operations.size()) {
+			solution = "Wrong Syntax!";
 			return;
 		}
 
-		for (int i = 0; i < numbers.size()-1; i++) {
+		for (int i = 0; i < numbers.size() - 1; i++) {
 
-			if((char)operations.elementAt(i) == '*')
-			{
+			if ((char) operations.elementAt(i) == '*') {
 				double x = (double) numbers.elementAt(i);
-				double y = (double) numbers.elementAt(i+1);
+				double y = (double) numbers.elementAt(i + 1);
 				double variable = x * y;
 				numbers.set(i, variable);
-				numbers.remove(i+1);
-				if(operations.size()<=1) break;
-				operations.remove(i);
-				
+				numbers.remove(i + 1);
+				if (operations.size() <= 1)
+					continue;
+				else {
+					operations.remove(i);
+					i--;
+				}
+
 			}
 		}
-		
-		for (int i = 0; i < numbers.size()-1; i++) {
 
-			if((char)operations.elementAt(i) == '/')
-			{
+		for (int i = 0; i < numbers.size() - 1; i++) {
+
+			if ((char) operations.elementAt(i) == '/') {
 				double x = (double) numbers.elementAt(i);
-				double y = (double) numbers.elementAt(i+1);
+				double y = (double) numbers.elementAt(i + 1);
 				double variable = x / y;
 				numbers.set(i, variable);
-				numbers.remove(i+1);
-				if(operations.size()<=1) break;
-				operations.remove(i);
-				
+				numbers.remove(i + 1);
+				if (operations.size() <= 1)
+					continue;
+				else {
+					operations.remove(i);
+					i--;
+				}
+
 			}
 		}
-		
-		for (int i = 0; i < numbers.size()-1; i++) {
 
-			if((char)operations.elementAt(i) == '-')
-			{
+		for (int i = 0; i < numbers.size() - 1; i++) {
+
+			if ((char) operations.elementAt(i) == '-') {
 				double x = (double) numbers.elementAt(i);
-				double y = (double) numbers.elementAt(i+1);
+				double y = (double) numbers.elementAt(i + 1);
 				double variable = x - y;
 				numbers.set(i, variable);
-				numbers.remove(i+1);
-				if(operations.size()<=1) break;
-				operations.remove(i);
-				
+				numbers.remove(i + 1);
+				if (operations.size() <= 1)
+					continue;
+				else {
+					operations.remove(i);
+					i--;
+				}
+
 			}
 		}
-		
-		for (int i = 0; i < numbers.size()-1; i++) {
 
-			if((char)operations.elementAt(i) == '+')
-			{
+		for (int i = 0; i < numbers.size() - 1; i++) {
+
+			if ((char) operations.elementAt(i) == '+') {
 				double x = (double) numbers.elementAt(i);
-				double y = (double) numbers.elementAt(i+1);
+				double y = (double) numbers.elementAt(i + 1);
 				double variable = x + y;
 				numbers.set(i, variable);
-				numbers.remove(i+1);
-				if(operations.size()<=1) break;
-				operations.remove(i);
-				
-				
+				numbers.remove(i + 1);
+				if (operations.size() <= 1)
+					continue;
+				else {
+					operations.remove(i);
+					i--;
+				}
+
 			}
 		}
-		
+
 		solution = numbers.get(0).toString().replace('.', ',');
-		
+
 	}
 
 	public String getSolution() {
 		clearWrapper();
 		return solution;
 	}
-	
-	public void clearWrapper()
-	{
-		wrapper= new Wrapper();
+
+	public void solve(String equation) {
+
+	}
+
+	public void clearWrapper() {
+		wrapper = new Wrapper();
 	}
 }

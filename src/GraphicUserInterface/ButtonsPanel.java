@@ -26,11 +26,11 @@ public class ButtonsPanel extends JPanel implements ActionListener {
 
 		solver=false;
 		buttonLabels = new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "+", "-", "/", "*", "=", "C",
-				",", "x", "a^2" };
+				",", "x", "a^2", "solve" };
 		// *****************************0****1*** 2*** 3*** 4*** 5*** 6*** 7*** 8***
 		// 9*** 10** 11** 12** 13** 14 **15***16**17
 		// ******16
-		btn = new CalcButton[19];
+		btn = new CalcButton[20];
 		int i = 0;
 		for (String label : buttonLabels) {
 			btn[i] = new CalcButton(label);
@@ -115,6 +115,7 @@ public class ButtonsPanel extends JPanel implements ActionListener {
 				if(solver)
 				btnListener.calculationEmitted("x");
 				break;
+			case "solve": btnListener.solveEquation();
 			}
 		}
 	}
@@ -225,6 +226,7 @@ public class ButtonsPanel extends JPanel implements ActionListener {
 
 		gc.gridx = 0;
 		gc.insets = new Insets(3, 3, 3, 3);
+		add(btn[19], gc);
 
 		gc.gridx++;
 		gc.insets = new Insets(3, 3, 3, 3);

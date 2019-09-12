@@ -21,4 +21,9 @@ public class Controller {
 		return model.getSolution();
 	}
 	
+	public void solve(String equation)
+	{
+		model.solve(equation);
+	}
+	
 }
