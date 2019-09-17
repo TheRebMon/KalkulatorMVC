@@ -61,13 +61,11 @@ public class ButtonsPanel extends JPanel implements ActionListener {
 	}
 
 	public void setEquationSolver(boolean solver) {
-		
-		for(int i=10; i<15; i++)
-		{
+
+		for (int i = 10; i < 15; i++) {
 			btn[i].setEnabled(!solver);
 		}
-		
-		
+
 		btn[19].setEnabled(solver);
 	}
 

@@ -1,12 +1,12 @@
 package Model;
 
-import java.util.Vector;
+import java.util.List;
 
 public class Model {
 
 	Wrapper wrapper;
-	Vector<Double> numbers;
-	Vector<Character> operations;
+	List<Double> numbers;
+	List<Character> operations;
 	String solution;
 	String eq1, eq2;
 
@@ -26,9 +26,9 @@ public class Model {
 		// TODO zlikwidowaæ zagnie¿d¿enie w 4 miejscach poni¿ej
 		for (int i = 0; i < numbers.size() - 1; i++) {
 
-			if ((char) operations.elementAt(i) == '*') {
-				double x = (double) numbers.elementAt(i);
-				double y = (double) numbers.elementAt(i + 1);
+			if ((char) operations.get(i) == '*') {
+				double x = (double) numbers.get(i);
+				double y = (double) numbers.get(i + 1);
 				double variable = x * y;
 				numbers.set(i, variable);
 				numbers.remove(i + 1);
@@ -44,9 +44,9 @@ public class Model {
 
 		for (int i = 0; i < numbers.size() - 1; i++) {
 
-			if ((char) operations.elementAt(i) == '/') {
-				double x = (double) numbers.elementAt(i);
-				double y = (double) numbers.elementAt(i + 1);
+			if ((char) operations.get(i) == '/') {
+				double x = (double) numbers.get(i);
+				double y = (double) numbers.get(i + 1);
 				double variable = x / y;
 				numbers.set(i, variable);
 				numbers.remove(i + 1);
@@ -62,9 +62,9 @@ public class Model {
 
 		for (int i = 0; i < numbers.size() - 1; i++) {
 
-			if ((char) operations.elementAt(i) == '-') {
-				double x = (double) numbers.elementAt(i);
-				double y = (double) numbers.elementAt(i + 1);
+			if ((char) operations.get(i) == '-') {
+				double x = (double) numbers.get(i);
+				double y = (double) numbers.get(i + 1);
 				double variable = x - y;
 				numbers.set(i, variable);
 				numbers.remove(i + 1);
@@ -80,9 +80,9 @@ public class Model {
 
 		for (int i = 0; i < numbers.size() - 1; i++) {
 
-			if ((char) operations.elementAt(i) == '+') {
-				double x = (double) numbers.elementAt(i);
-				double y = (double) numbers.elementAt(i + 1);
+			if ((char) operations.get(i) == '+') {
+				double x = (double) numbers.get(i);
+				double y = (double) numbers.get(i + 1);
 				double variable = x + y;
 				numbers.set(i, variable);
 				numbers.remove(i + 1);
@@ -111,14 +111,14 @@ public class Model {
 
 		wrapper.simpleCalculation(a + " " + b + " " + c);
 		numbers = wrapper.getNumbersArray();
-		double delta = Math.sqrt(Math.pow(numbers.elementAt(1), 2) - 4 * numbers.elementAt(0) * numbers.elementAt(2));
+		double delta = Math.sqrt(Math.pow(numbers.get(1), 2) - 4 * numbers.get(0) * numbers.get(2));
 
 		if (delta > 0) {
 
-			x1 = (delta - numbers.elementAt(1)) / (2 * numbers.elementAt(0));
-			x2 = (delta + numbers.elementAt(1)) / (2 * numbers.elementAt(0));
+			x1 = (delta - numbers.get(1)) / (2 * numbers.get(0));
+			x2 = (delta + numbers.get(1)) / (2 * numbers.get(0));
 		} else if (delta == 0) {
-			x1 = x2 = -numbers.elementAt(1) / (2 * numbers.elementAt(0));
+			x1 = x2 = -numbers.get(1) / (2 * numbers.get(0));
 		} else {
 			x1 = null;
 			x2 = null;

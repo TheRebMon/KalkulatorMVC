@@ -38,7 +38,9 @@ public class EquationPanel extends JPanel implements Editable {
 		aField = new JTextField(5);
 		bField = new JTextField(5);
 		cField = new JTextField(5);
-		aField.setCaretColor(Color.WHITE); bField.setCaretColor(Color.WHITE); cField.setCaretColor(Color.WHITE);
+		aField.setCaretColor(Color.WHITE);
+		bField.setCaretColor(Color.WHITE);
+		cField.setCaretColor(Color.WHITE);
 		aLabel = new JLabel("a = ");
 		bLabel = new JLabel("b = ");
 		cLabel = new JLabel("c = ");
@@ -56,7 +58,7 @@ public class EquationPanel extends JPanel implements Editable {
 		southPanel.add(cField);
 
 		Border defaultBorder = aField.getBorder();
-		
+
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		add(northPanel);
 		add(southPanel);
@@ -71,12 +73,12 @@ public class EquationPanel extends JPanel implements Editable {
 				aField.setBorder(BorderFactory.createLineBorder(Color.BLUE));
 				bField.setBorder(defaultBorder);
 				cField.setBorder(defaultBorder);
-				
+
 			}
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				
+
 			}
 		});
 		bField.addFocusListener(new FocusListener() {
@@ -91,7 +93,7 @@ public class EquationPanel extends JPanel implements Editable {
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				
+
 			}
 		});
 		cField.addFocusListener(new FocusListener() {
@@ -106,7 +108,7 @@ public class EquationPanel extends JPanel implements Editable {
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				
+
 			}
 		});
 
@@ -168,12 +170,11 @@ public class EquationPanel extends JPanel implements Editable {
 		if (eq1 != null && eq2 != null) {
 			eq1Label.setText("x1 = " + eq1);
 			eq2Label.setText("x2 = " + eq2);
-		}
-		else {
+		} else {
 			eq1Label.setText("Delta");
 			eq2Label.setText("mniejsza od zera!");
 		}
-		
+
 	}
 
 }

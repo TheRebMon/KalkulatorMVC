@@ -18,7 +18,7 @@ public class MainFrame extends JFrame {
 		super("JAVA Kalkulator made in MVC structure");
 
 		mainPanel = new MainPanel();
-		
+
 		// Border
 		Border emptyBorder = BorderFactory.createEmptyBorder(5, 5, 5, 5);
 		Border mainBorder = BorderFactory.createEtchedBorder();
@@ -27,7 +27,6 @@ public class MainFrame extends JFrame {
 
 		setLayout(new BorderLayout());
 		add(mainPanel, BorderLayout.CENTER);
-		
 
 		setSize(400, 600);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

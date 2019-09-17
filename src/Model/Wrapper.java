@@ -1,15 +1,17 @@
 package Model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 public class Wrapper {
 
-	private Vector<Double> numbersArray;
-	private Vector<Character> operationArray;
+	private List<Double> numbersArray;
+	private List<Character> operationArray;
 
 	public Wrapper() {
-		numbersArray = new Vector<Double>(0);
-		operationArray = new Vector<Character>(0);
+		numbersArray = new ArrayList<Double>(10);
+		operationArray = new ArrayList<Character>(10);
 	}
 
 	public void simpleCalculation(String text) {
@@ -109,11 +111,11 @@ public class Wrapper {
 		numbersArray.add(isPositive ? dNum : dNum * -1);
 	}
 
-	public Vector<Double> getNumbersArray() {
+	public List<Double> getNumbersArray() {
 		return numbersArray;
 	}
 
-	public Vector<Character> getOperationArray() {
+	public List<Character> getOperationArray() {
 		return operationArray;
 	}
 
