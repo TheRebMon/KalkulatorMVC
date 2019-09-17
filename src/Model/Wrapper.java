@@ -21,16 +21,15 @@ public class Wrapper {
 		for (int i = 0; i < text.length(); i++) {
 			char character = text.charAt(i);
 
-			if ((character == '+' || character == '-' || character == '*' || character == '/') && !operation) {
+			if ((character == '+' || character == '-' || character == '*' || character == '/') && !operation || character==' ') {
 
 				if (number != "") {
 					double dNum = Double.parseDouble(number);
-					numbersArray.add(isPositive ? dNum : dNum*-1);
+					numbersArray.add(isPositive ? dNum : dNum * -1);
 					number = "";
 					isPositive = true;
 					operation = true;
 				}
-				
 
 				switch (character) {
 				case '+':
@@ -49,6 +48,8 @@ public class Wrapper {
 				case '/':
 					operationArray.add('/');
 					break;
+				case ' ':
+					continue;
 				}
 
 			} else if (character == '-' && operation) {
@@ -105,7 +106,7 @@ public class Wrapper {
 		}
 
 		double dNum = Double.parseDouble(number);
-		numbersArray.add(isPositive ? dNum : dNum*-1);
+		numbersArray.add(isPositive ? dNum : dNum * -1);
 	}
 
 	public Vector<Double> getNumbersArray() {

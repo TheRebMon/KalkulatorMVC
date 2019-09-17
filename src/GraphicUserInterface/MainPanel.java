@@ -7,6 +7,10 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import Controller.Controller;
 
@@ -20,11 +24,26 @@ public class MainPanel extends JPanel {
 	private CalculationField textField;
 	private Controller controller;
 	private boolean cleanFlag;
+	private JTabbedPane tabPane;
+	private EquationPanel equationPanel;
 
 	public MainPanel() {
 		btns = new ButtonsPanel();
 		textField = new CalculationField();
 		controller = new Controller();
+		tabPane = new JTabbedPane();
+		equationPanel = new EquationPanel();
+
+		tabPane.addTab("Simple Calculator", textField);
+		tabPane.addTab("Equation Solver", equationPanel);
+		tabPane.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent arg0) {
+				btns.setEquationSolver(tabPane.getSelectedIndex()==1 ? true : false);
+			}
+		});
+
 		cleanFlag = false;
 
 		btns.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -35,22 +54,36 @@ public class MainPanel extends JPanel {
 			@Override
 			public void calculationEmitted(String text) {
 
-				if (cleanFlag) {
-					textField.setText("");
-					cleanFlag = false;
+				if(tabPane.getSelectedIndex()==0 && cleanFlag) {
+					JTextField component = (JTextField) tabPane.getSelectedComponent();
+							component.setText("");
+				textField.addText(text);
 				}
-
-				addText(text);
+				
+				else {
+					Editable component = (Editable)tabPane.getSelectedComponent();
+					component.addText(text);
+				}
+				
+				
+				
 
 			}
 
 			@Override
 			public void calculationDeleted() {
-				deleteText();
-				if (cleanFlag) {
+				
+				if(tabPane.getSelectedIndex()==0 && cleanFlag)
+				{
 					textField.setText("");
 					cleanFlag = false;
 				}
+				else
+				{
+					Editable component = (Editable)tabPane.getSelectedComponent();
+					component.deleteText();
+				}
+				
 			}
 
 			@Override
@@ -63,14 +96,15 @@ public class MainPanel extends JPanel {
 
 				}
 				textField.setText("");
-				addText(controller.getSolution());
+				textField.addText(controller.getSolution());
 				cleanFlag = true;
 
 			}
 
 			@Override
 			public void solveEquation() {
-				controller.solve(textField.getText());
+				controller.solve(equationPanel.getA(), equationPanel.getB(), equationPanel.getC());
+				equationPanel.setEquationSolve(controller.getEqSolution1(), controller.getEqSolution2());
 			}
 
 		});
@@ -79,37 +113,7 @@ public class MainPanel extends JPanel {
 
 	}
 
-	//TODO double operation sign input
-	public void addText(String character) {
-		ArrayList<String> operation = new ArrayList<String>();
-		operation.add("+");
-		operation.add("*");
-		operation.add("/");
-		operation.add(",");
-		operation.add("=");
-		
-		String input = textField.getText();
 
-		if(operation.contains(character))
-		{	
-			for (String sign : operation)
-				if (input.endsWith(sign))
-					return;
-				else
-					continue;
-		}
-		textField.setText(textField.getText() + character);
-
-	}
-
-	public void deleteText() {
-
-		String text = textField.getText();
-		if (text.length() > 0) {
-			textField.setText(text.substring(0, text.length() - 1));
-		}
-
-	}
 
 	private void showUI() {
 		setLayout(new GridBagLayout());
@@ -123,9 +127,9 @@ public class MainPanel extends JPanel {
 		gc.weighty = 0.2;
 		gc.anchor = GridBagConstraints.NORTH;
 
-		add(textField, gc);
+		add(tabPane, gc);
 
-		/////////////////////// Second Row/////////////////////
+		/////////////////////// Second Row////////////////////////////
 		gc.gridy++;
 		gc.gridx = 0;
 		gc.weightx = 1;
@@ -133,9 +137,11 @@ public class MainPanel extends JPanel {
 
 		add(btns, gc);
 	}
-	public void setSolver(boolean b)
-	{
+
+	public void setSolver(boolean b) {
 		btns.setEquationSolver(b);
 		textField.setText("");
 	}
+	
+	
 }
