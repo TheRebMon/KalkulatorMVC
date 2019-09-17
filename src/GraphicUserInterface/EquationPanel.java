@@ -1,13 +1,16 @@
 package GraphicUserInterface;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 public class EquationPanel extends JPanel implements Editable {
 
@@ -35,6 +38,7 @@ public class EquationPanel extends JPanel implements Editable {
 		aField = new JTextField(5);
 		bField = new JTextField(5);
 		cField = new JTextField(5);
+		aField.setCaretColor(Color.WHITE); bField.setCaretColor(Color.WHITE); cField.setCaretColor(Color.WHITE);
 		aLabel = new JLabel("a = ");
 		bLabel = new JLabel("b = ");
 		cLabel = new JLabel("c = ");
@@ -51,6 +55,8 @@ public class EquationPanel extends JPanel implements Editable {
 		southPanel.add(cLabel);
 		southPanel.add(cField);
 
+		Border defaultBorder = aField.getBorder();
+		
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		add(northPanel);
 		add(southPanel);
@@ -62,11 +68,15 @@ public class EquationPanel extends JPanel implements Editable {
 			@Override
 			public void focusGained(FocusEvent e) {
 				var = VariableEnum.a;
+				aField.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+				bField.setBorder(defaultBorder);
+				cField.setBorder(defaultBorder);
+				
 			}
 
 			@Override
 			public void focusLost(FocusEvent e) {
-
+				
 			}
 		});
 		bField.addFocusListener(new FocusListener() {
@@ -74,11 +84,14 @@ public class EquationPanel extends JPanel implements Editable {
 			@Override
 			public void focusGained(FocusEvent e) {
 				var = VariableEnum.b;
+				bField.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+				cField.setBorder(defaultBorder);
+				aField.setBorder(defaultBorder);
 			}
 
 			@Override
 			public void focusLost(FocusEvent e) {
-
+				
 			}
 		});
 		cField.addFocusListener(new FocusListener() {
@@ -86,11 +99,14 @@ public class EquationPanel extends JPanel implements Editable {
 			@Override
 			public void focusGained(FocusEvent e) {
 				var = VariableEnum.c;
+				cField.setBorder(BorderFactory.createLineBorder(Color.BLUE));
+				aField.setBorder(defaultBorder);
+				bField.setBorder(defaultBorder);
 			}
 
 			@Override
 			public void focusLost(FocusEvent e) {
-
+				
 			}
 		});
 
@@ -99,6 +115,7 @@ public class EquationPanel extends JPanel implements Editable {
 	@Override
 	public void addText(String character) {
 		Utils.addText(character, getSelectedTextField());
+		getSelectedTextField().setBorder(BorderFactory.createLineBorder(Color.BLUE));
 	}
 
 	@Override

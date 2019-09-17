@@ -41,6 +41,7 @@ public class MainPanel extends JPanel {
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
 				btns.setEquationSolver(tabPane.getSelectedIndex()==1 ? true : false);
+				
 			}
 		});
 

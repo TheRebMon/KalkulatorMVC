@@ -123,8 +123,13 @@ public class Model {
 			x1 = null;
 			x2 = null;
 		}
-		eq1 = x1.toString();
-		eq2 = x2.toString();
+		try{
+			eq1 = x1.toString();
+			eq2 = x2.toString();
+		}catch(NullPointerException e){
+			eq1 = eq2 = null;
+		}
+		
 		
 		clearWrapper();
 
